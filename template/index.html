@@ -1,0 +1,805 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home-Metrics Geeks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bgColor: "#FFFFFF",
+              primary: "#EC1E2E",
+              secondary: "#C90000",
+              ghost: "#A4A4A4",
+              link: "#ec1e2e",
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <!-- fontawsome cdn  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+      ::selection {
+        color: #ffffff;
+        background: #ec1e2e;
+      }
+
+      .shadow-every-side {
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      }
+
+      #toast-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+      }
+
+      .success-toast {
+        background-color: rgb(24, 143, 24);
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+      .err-toast {
+        background-color: #ec1e2e;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+
+      @keyframes moveUpDown {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+      .animate-moveUpDown {
+        animation: moveUpDown 3s ease-in-out infinite;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-bgColor">
+    <nav class="sticky top-0 bg-white shadow z-10">
+      <div
+        class="container mx-auto px-4 py-2 mx-auto flex flex-wrap items-center justify-between"
+      >
+        <div>
+          <img
+            src="{% static 'images/Logo.png' %}"
+            alt="METRICS_GEEKS"
+            class="w-[165px] h-9 md:w-[264px] md:h-14"
+          />
+        </div>
+
+        <div class="space-x-3 md:space-x-0 rtl:space-x-reverse lg:hidden">
+          <button
+          id="navbarToggle"
+            data-collapse-toggle="navbar-sticky"
+            type="button"
+            class="text-primary"
+            aria-controls="navbar-sticky"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Open main menu</span>
+            <i id="menuIcon" class="fa-solid fa-bars text-primary"></i>
+          </button>
+        </div>
+
+        <div
+          id="navbar-sticky"
+          class="hidden font-semibold flex-wrap items-center gap-4 text-sm w-full md:text-[16px] lg:w-auto lg:flex lg:gap-5 xl:gap-8"
+        >
+          <ul
+            class="flex flex-col p-4 gap-4 lg:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 rtl:space-x-reverse lg:flex-row lg:gap-8 lg:mt-0 lg:border-0 lg:bg-white dark:bg-gray-800 lg:dark:bg-gray-900 dark:border-gray-700"
+          >
+            <a href="#"> HOME </a
+            ><a href="#we-offer"> WHAT WE OFFER </a
+            ><a href="#how-works"> HOW IT WORKS </a
+            ><a href="#analytics"> ANALYTICS & MORE </a
+            ><a href="#we-are"> WHO WE ARE </a>
+          </ul>
+        </div>
+        <!-- <div class="text-primary lg:hidden">
+          
+        </div> -->
+      </div>
+    </nav>
+    <!-- header section start -->
+    <header
+      class="container mx-auto px-4 flex flex-col py-12 justify-center items-center gap-16 mt-12 md:mt-16 md:py-[75px] lg:justify-between xl:flex-row xl:mt-20 xl:py-[100px] xl:gap-8"
+    >
+      <div class="space-y-5 text-center xl:text-start xl:w-3/5 lg:space-y-8">
+        <h1 class="text-primary text-4xl font-bold md:text-5xl lg:text-[85px]">
+          Metrics Geeks
+        </h1>
+        <h4
+          class="font-semibold text-2xl md:leading-[3rem] md:text-4xl xl:text-[50px] xl:leading-[4rem] xl:pr-5 2xl:pr-10"
+        >
+          The AI analytics shortcut to digital insights
+        </h4>
+        <p class="text-ghost xl:text-xl">
+          Metrics Geeks The AI analytics shortcut to digital insights Automated
+          insights and recommendations to guide your digital business? Before
+          now, it didn’t exist.
+        </p>
+        <a href="#contact" class="inline-block">
+          <button
+            class="flex items-center gap-2 border border-primary text-primary hover:text-white hover:bg-primary hover:-translate-y-2 transition duration-300 ease-in-out font-semibold px-[30px] py-[15px] rounded-full"
+          >
+            Learn More
+            <i class="fa-solid fa-arrow-right-long"></i>
+          </button>
+        </a>
+      </div>
+      <div
+        class="shadow-every-side space-y-5 p-5 rounded-sm flex flex-col items-center text-center md:space-y-8 lg:p-8 xl:p-12 xl:w-2/5"
+      >
+        <h6
+          class="text-[25px] font-bold text-primary md:text-[32px] md:leading-normal"
+        >
+          Sign up and get 30 days of AI analysis.
+        </h6>
+        <button
+          data-modal-target="authentication-modal"
+          data-modal-toggle="authentication-modal"
+          class="px-12 py-6 rounded-lg font-semibold bg-secondary text-white"
+        >
+          SignUp Now
+        </button>
+        <p class="text-xs text-ghost flex items-center gap-1">
+          <span
+            class="w-3 h-3 flex items-center justify-center inline-block rounded-full bg-primary text-white"
+            ><i size="10" class="fa-solid fa-xs fa-info"></i
+          ></span>
+          We hate spam and promise to keep your email safe
+        </p>
+      </div>
+    </header>
+    <!-- header section end -->
+
+    <!-- what we offer section start -->
+    <p id="we-offer"></p>
+    <section
+      class="container mx-auto px-4 flex flex-col py-12 justify-center items-center gap-8 md:py-[75px] xl:flex-row xl:py-[100px]"
+    >
+      <div class="w-full -z-10 animate-moveUpDown xl:w-1/2">
+        <img src="{% static 'images/WHAT-WE-OFFER.jpg' %}" alt="" />
+      </div>
+      <div class="space-y-5 w-full xl:w-1/2 md:space-y-8">
+        <h2 class="text-2xl text-primary font-bold md:text-[35px]">
+          WHAT WE OFFER
+        </h2>
+        <p>
+          We go further than Google Analytics alerts to explain your site
+          traffic. Using trained AI-data nerds, MetricsGeeks created a
+          customizable monitoring tool to seamlessly track your digital
+          footprint all the way through sales to marketing channels.
+        </p>
+        <p>
+          Automated alerts are then delivered to your inbox daily containing
+          your site’s analysis. These alerts will flag any anomalies and
+          pinpoint their origin so you can quickly fix errors or boost
+          successful campaigns.
+        </p>
+        <div class="flex flex-col mt-5 gap-5 md:flex-row md:gap-0">
+          <div class="text-center md:w-1/2 xl:text-start">
+            <a href="#contact">
+              <button
+                class="bg-primary text-white hover:bg-secondary hover:-translate-y-2 transition duration-300 ease-in-out font-bold px-[40px] py-[15px] uppercase rounded-full"
+              >
+                Learn More
+              </button></a
+            >
+          </div>
+          <div class="text-center md:w-1/2 xl:text-start">
+            <button
+              data-modal-target="authentication-modal"
+              data-modal-toggle="authentication-modal"
+              class="bg-primary text-white hover:bg-secondary hover:-translate-y-2 transition duration-300 ease-in-out font-bold px-[40px] py-[15px] uppercase rounded-full"
+            >
+              Sign up now
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- what we offer section end -->
+
+    <!-- daily reporting section start -->
+    <section class="bg-[#F9F9F9]">
+      <div
+        class="container mx-auto px-4 flex flex-col py-12 justify-center items-center gap-8 md:py-[75px] xl:flex-row xl:py-[100px]"
+      >
+        <div class="space-y-5 w-full xl:w-1/2 md:space-y-8">
+          <h2 class="text-2xl text-primary font-bold md:text-[35px]">
+            DAILY REPORTING
+          </h2>
+          <p>
+            After customizing your dashboard, you’ll receive a digital analytics
+            insights report via email everyday from MetricsGeeks detailing
+            important changes in your critical metrics.
+          </p>
+          <div class="flex flex-col mt-5 gap-5 md:flex-row md:gap-0">
+            <div class="text-center md:w-1/2 xl:text-start">
+              <a href="#contact">
+                <button
+                  class="bg-primary text-white hover:bg-secondary hover:-translate-y-2 transition duration-300 ease-in-out font-bold px-[40px] py-[15px] uppercase rounded-full"
+                >
+                  Learn More
+                </button>
+              </a>
+            </div>
+            <div class="text-center md:w-1/2 xl:text-start">
+              <button
+                data-modal-target="authentication-modal"
+                data-modal-toggle="authentication-modal"
+                class="bg-primary text-white hover:bg-secondary hover:-translate-y-2 transition duration-300 ease-in-out font-bold px-[40px] py-[15px] uppercase rounded-full"
+              >
+                Sign up now
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="w-full text-center xl:w-1/2">
+          <img
+            class="-z-10 animate-moveUpDown max-w-[310px] mx-auto md:max-w-[360px]"
+            src="{%static 'images/report.png' %}"
+            alt=""
+          />
+        </div>
+      </div>
+    </section>
+    <!-- daily reporting section end -->
+
+    <!-- how it works section start -->
+    <p id="how-works"></p>
+    <section class="bg-[#F4F4FA]">
+      <div class="container mx-auto px-4 py-12 md:py-[75px] xl:py-[100px]">
+        <h2
+          class="text-2xl text-primary font-bold text-center mb-8 md:mb-12 md:text-[35px]"
+        >
+          HOW IT WORKS
+        </h2>
+        <div class="grid gap-5 md:grid-cols-3">
+          <div
+            class="bg-white flex flex-col items-center justify-center text-center py-12 space-y-5 shadow-every-side"
+          >
+            <div
+              class="w-[60px] h-[60px] bg-secondary rounded-full flex items-center justify-center text-white"
+            >
+              <i class="far fa-chart-bar fa-2xl"></i>
+            </div>
+            <h6 class="font-semibold text-primary md:text-xl">
+              Connect to Google Analytics
+            </h6>
+            <p class="text-sm px-5 md:text-[16px]">
+              You decide the priority metrics to get insights on a regular
+              basis.
+            </p>
+          </div>
+          <div
+            class="bg-white flex flex-col items-center justify-center text-center py-12 space-y-5 shadow-every-side"
+          >
+            <div
+              class="w-[60px] h-[60px] bg-secondary rounded-full flex items-center justify-center text-white"
+            >
+              <i class="fas fa-chart-pie fa-2xl"></i>
+            </div>
+            <h6 class="font-semibold text-primary md:text-xl">
+              Choose your metrics
+            </h6>
+            <p class="text-sm px-5 md:text-[16px]">
+              Like sessions, revenue, or average order value.
+            </p>
+          </div>
+          <div
+            class="bg-white flex flex-col items-center justify-center text-center py-12 space-y-5 shadow-every-side"
+          >
+            <div
+              class="w-[60px] h-[60px] bg-secondary rounded-full flex items-center justify-center text-white"
+            >
+              <i class="fas fa-cogs fa-2xl"></i>
+            </div>
+            <h6 class="font-semibold text-primary md:text-xl">
+              Customize 3 dimensions
+            </h6>
+            <p class="text-sm px-5 md:text-[16px]">
+              Like product, geography, and marketing channel.
+            </p>
+          </div>
+        </div>
+        <div class="flex flex-col mt-5 gap-5 md:mt-8 md:flex-row md:gap-0">
+          <div class="text-center md:w-1/2">
+            <a href="#contact">
+              <button
+                class="bg-primary text-white hover:bg-secondary hover:-translate-y-2 transition duration-300 ease-in-out font-bold px-[40px] py-[15px] uppercase rounded-full"
+              >
+                Learn More
+              </button>
+            </a>
+          </div>
+          <div class="text-center md:w-1/2">
+            <button
+              data-modal-target="authentication-modal"
+              data-modal-toggle="authentication-modal"
+              class="bg-primary text-white hover:bg-secondary hover:-translate-y-2 transition duration-300 ease-in-out font-bold px-[40px] py-[15px] uppercase rounded-full"
+            >
+              Sign up now
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- how it works section end -->
+
+    <!-- problem we solve section start -->
+    <section
+      class="container mx-auto px-4 flex flex-col justify-center items-center gap-8 py-8 xl:py-0 xl:flex-row"
+    >
+      <div class="space-y-5 w-full xl:w-1/2 md:space-y-8">
+        <h2 class="text-2xl text-primary font-bold md:text-[35px]">
+          PROBLEMS WE SOLVE
+        </h2>
+        <div class="space-y-2 md:space-y-3">
+          <p class="flex items-center gap-2">
+            <span
+              class="min-w-[18px] h-[18px] inline-block border border-primary rounded-full text-primary flex items-center justify-center"
+              ><i class="fa-solid fa-xs fa-check"></i></span
+            ><span
+              >I didn’t know my tracking was broken for the past week!</span
+            >
+          </p>
+          <p class="flex items-center gap-2">
+            <span
+              class="min-w-[18px] h-[18px] inline-block border border-primary rounded-full text-primary flex items-center justify-center"
+              ><i class="fa-solid fa-xs fa-check"></i></span
+            ><span
+              >I see an uptick/downtick in my product page visits. How do I know
+              which of my marketing channels caused this change?</span
+            >
+          </p>
+          <p class="flex items-center gap-2">
+            <span
+              class="min-w-[18px] h-[18px] inline-block border border-primary rounded-full text-primary flex items-center justify-center"
+              ><i class="fa-solid fa-xs fa-check"></i></span
+            ><span
+              >I need an automated report that tracks my business’s most
+              important pages and metrics.</span
+            >
+          </p>
+          <p class="flex items-center gap-2">
+            <span
+              class="min-w-[18px] h-[18px] inline-block border border-primary rounded-full text-primary flex items-center justify-center"
+              ><i class="fa-solid fa-xs fa-check"></i></span
+            ><span
+              >There’s an anomaly in my metrics, but I don’t have an indication
+              of what to do about it.</span
+            >
+          </p>
+        </div>
+        <p></p>
+        <div class="flex flex-col mt-5 gap-5 md:flex-row md:gap-0">
+          <div class="text-center md:w-1/2 xl:text-start">
+            <a href="#contact">
+              <button
+                class="bg-primary text-white hover:bg-secondary hover:-translate-y-2 transition duration-300 ease-in-out font-bold px-[40px] py-[15px] uppercase rounded-full"
+              >
+                Learn More
+              </button>
+            </a>
+          </div>
+          <div class="text-center md:w-1/2 xl:text-start">
+            <button
+              data-modal-target="authentication-modal"
+              data-modal-toggle="authentication-modal"
+              class="bg-primary text-white hover:bg-secondary hover:-translate-y-2 transition duration-300 ease-in-out font-bold px-[40px] py-[15px] uppercase rounded-full"
+            >
+              Sign up now
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="-z-10 animate-moveUpDown w-full text-center xl:w-1/2">
+        <img class="" src="{%static 'images/Problems-We-Solve.jpg' %}" alt="" />
+      </div>
+    </section>
+    <!-- problem we solve section end -->
+
+    <!-- analylics section start -->
+    <p id="analytics"></p>
+    <section class="bg-[#F9F9F9]">
+      <div
+        class="container mx-auto px-4 flex flex-col justify-center items-center gap-8 py-8 xl:py-0 xl:flex-row"
+      >
+        <div class="w-full text-center xl:w-1/2">
+          <img
+            class="-z-10 animate-moveUpDown"
+            src="{%static 'images/Daily-Reporting-no.jpg' %}"
+            alt=""
+          />
+        </div>
+        <div class="space-y-5 w-full xl:w-1/2 md:space-y-8">
+          <h2 class="text-2xl text-primary font-bold md:text-[35px]">
+            ANALYTICS & MORE
+          </h2>
+          <p>
+            Don’t let your data overwhelm you. MetricsGeeks provides alerts to
+            need to keep you on track.
+          </p>
+          <p>
+            If you need more support, our consulting services are here for you.
+            Just chat or email
+            <a
+              href="mailto:support@marketingscience.co"
+              class="text-link underline"
+              >support@marketingscience.co</a
+            >. We are partners in your digital analytics success!
+          </p>
+          <div class="flex flex-col mt-5 gap-5 md:flex-row md:gap-0">
+            <div class="text-center md:w-1/2 xl:text-start">
+              <a href="#contact">
+                <button
+                  class="bg-primary text-white hover:bg-secondary hover:-translate-y-2 transition duration-300 ease-in-out font-bold px-[40px] py-[15px] uppercase rounded-full"
+                >
+                  Learn More
+                </button>
+              </a>
+            </div>
+            <div class="text-center md:w-1/2 xl:text-start">
+              <button
+                data-modal-target="authentication-modal"
+                data-modal-toggle="authentication-modal"
+                class="bg-primary text-white hover:bg-secondary hover:-translate-y-2 transition duration-300 ease-in-out font-bold px-[40px] py-[15px] uppercase rounded-full"
+              >
+                Sign up now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- analylics section end -->
+
+    <!-- who we are section start -->
+    <p id="we-are"></p>
+    <section
+      class="container mx-auto px-4 flex flex-col justify-center items-center gap-8 py-8 xl:py-0 xl:flex-row"
+    >
+      <div class="space-y-5 w-full xl:w-1/2 md:space-y-8">
+        <h2 class="text-2xl text-primary font-bold md:text-[35px]">
+          WHO WE ARE
+        </h2>
+        <p>
+          From the founders of
+          <a
+            href="https://marketingscience.co/"
+            target="_blank"
+            class="text-link underline"
+            >Marketing Science Analytics Agency</a
+          >
+          in Denver, Colorado, MetricsGeeks emerged as a solution to persistent
+          issues hundreds of clients encountered in their everyday ecommerce.
+          With over 50 years of combined experience in digital marketing and
+          tech (ie: Target, Audi, The North Face, Coors), we take “over
+          analyzing” seriously. We strive to help more people save time, money,
+          and headaches with our breakthrough technology and metrics-based
+          business strategy.
+        </p>
+        <div class="flex flex-col mt-5 gap-5 md:flex-row md:gap-0">
+          <div class="text-center md:w-1/2 xl:text-start">
+            <a href="#contact">
+              <button
+                class="bg-primary text-white hover:bg-secondary hover:-translate-y-2 transition duration-300 ease-in-out font-bold px-[40px] py-[15px] uppercase rounded-full"
+              >
+                Learn More
+              </button>
+            </a>
+          </div>
+          <div class="text-center md:w-1/2 xl:text-start">
+            <button
+              data-modal-target="authentication-modal"
+              data-modal-toggle="authentication-modal"
+              class="bg-primary text-white hover:bg-secondary hover:-translate-y-2 transition duration-300 ease-in-out font-bold px-[40px] py-[15px] uppercase rounded-full"
+            >
+              Sign up now
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="-z-10 animate-moveUpDown w-full text-center xl:w-1/2">
+        <img class="" src="{% static 'images/WHO-WE-ARE.jpg' %}" alt="" />
+      </div>
+    </section>
+    <!-- who we are section end -->
+
+    <!-- contact section start -->
+    <p id="contact"></p>
+    <section class="container mx-auto px-4 space-y-5 w-full md:space-y-8">
+      <h2 class="text-2xl text-primary font-bold md:text-[35px]">CONTACT US</h2>
+      <p>
+        Have any questions about AI-driven analytics? Would you like a quick
+        demo? Contact us to get your questions answered.
+      </p>
+      <div class="space-y-1">
+        <li>
+          email:
+          <a
+            class="text-link underline"
+            href="mailto:support@marketingscience.co"
+            >support@marketingscience.co</a
+          >
+        </li>
+        <li>
+          <a
+            class="text-link underline"
+            href="https://www.instagram.com/marketing_science/"
+            target="_blank"
+            >IG:</a
+          >
+          @ marketing_science
+        </li>
+        <li>
+          <a
+            class="text-link underline"
+            href="https://wa.me/17196469245"
+            target="_blank"
+            >Whatsapp</a
+          >
+        </li>
+      </div>
+    </section>
+    <!-- contact section end -->
+
+    <!-- footer -->
+    <footer class="bg-[#444242]">
+      <div class="container mx-auto px-4 py-5 text-center text-white">
+        <p class="">Copyright © 2024 The Marketing Science Department, LLC</p>
+        <p class="">
+          <a href="#">Privacy Policy</a> | <a href="#">Conditions of Use</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Sign Up / Login Modal -->
+    <!-- Main modal -->
+    <div
+      id="authentication-modal"
+      tabindex="-1"
+      aria-hidden="true"
+      class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+    >
+      <div class="relative p-4 w-full max-w-xl max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+          <!-- Modal header -->
+          <div class="">
+            <button
+              type="button"
+              class="end-2.5 absolute right-3 top-3 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+              data-modal-hide="authentication-modal"
+            >
+              <svg
+                class="w-3 h-3"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 14 14"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                />
+              </svg>
+              <span class="sr-only">Close modal</span>
+            </button>
+          </div>
+          <!-- Modal body -->
+          <div class="p-4 md:p-5">
+            <!-- Sign-up form -->
+            <form id="signupForm" method="post">
+              {% csrf_token %}
+              <h3
+                class="text-xl mb-3 font-semibold text-gray-900 dark:text-white"
+              >
+                Create your account.
+              </h3>
+              <div class="mt-2">
+                <label
+                  for="first_name"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Name</label
+                >
+                <input
+                  type="text"
+                  name="first_name"
+                  id="first_name"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                  required
+                />
+              </div>
+              <div class="mt-2">
+                <label
+                  for="last_name"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Username</label
+                >
+                <input
+                  type="text"
+                  name="username"
+                  id="username"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                  required
+                />
+              </div>
+              <div class="mt-2">
+                <label
+                  for="email"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Your email</label
+                >
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                  placeholder="name@company.com"
+                  required
+                />
+              </div>
+              <div class="mt-2">
+                <label
+                  for="password"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Your password</label
+                >
+                <input
+                  type="password"
+                  name="password1"
+                  id="password"
+                  placeholder="••••••••"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                  required
+                />
+              </div>
+              <div class="mt-2">
+                <label
+                  for="password2"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Confirm password</label
+                >
+                <input
+                  type="password"
+                  name="password2"
+                  id="password2"
+                  placeholder="••••••••"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                class="w-full text-white bg-primary hover:bg-secondary focus:outline-none font-medium rounded-lg text-sm px-5 py-3.5 mt-4 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Sign Up
+              </button>
+              <div
+                class="mt-3 text-sm font-medium text-gray-500 dark:text-gray-300 mt-4"
+                id="alreadyHaveAccount"
+              >
+                Already have an account?
+                <a
+                  href="#"
+                  id="toggleLogin"
+                  class="toggleLoginText text-link hover:underline dark:text-blue-500"
+                  >Login</a
+                >
+              </div>
+            </form>
+            <!-- Login form -->
+            <form
+              id="loginForm"
+              autocomplete="off"
+              method="post"
+              class="hidden"
+            >
+              {% csrf_token %}
+              <h3
+                class="text-xl mb-3 font-semibold text-gray-900 dark:text-white"
+              >
+                Sign in to your account.
+              </h3>
+              <div class="mt-2">
+                <label
+                  for="login_email"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Username</label
+                >
+                <input
+                  type="text"
+                  name="username"
+                  id="login_email"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                  placeholder=""
+                  required
+                />
+              </div>
+              <div class="mt-2">
+                <label
+                  for="login_password"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Your password</label
+                >
+                <input
+                  type="password"
+                  name="login_password"
+                  id="login_password"
+                  placeholder="••••••••"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                class="w-full text-white bg-primary hover:bg-secondary focus:outline-none font-medium rounded-lg text-sm px-5 py-3.5 mt-4 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Login
+              </button>
+              <div
+                class="mt-3 text-sm font-medium text-gray-500 dark:text-gray-300 mt-4"
+                id="alreadyHaveAccount"
+              >
+                Don't have any account?
+                <a
+                  href="#"
+                  id="toggleRegister"
+                  class="toggleLoginText text-link hover:underline dark:text-blue-500"
+                  >Regiser</a
+                >
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="z-50" id="toast-container">
+      <!-- Toasts will be dynamically added here -->
+    </div>
+    <!-- js import  -->
+    <script src="{% static 'js/index.js' %}"></script>
+    <!-- js import  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+  </body>
+</html>
