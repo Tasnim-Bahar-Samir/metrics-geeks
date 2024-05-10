@@ -13,6 +13,7 @@ def index(request):
 
 def signup(request):
     if request.method == 'POST':
+        print(request.POST.get('first_name'))
         username = request.POST.get('username')
         email = request.POST.get('email')
         first_name = request.POST.get('first_name')
@@ -32,6 +33,7 @@ def signup(request):
             return redirect('index')
 
         except IntegrityError as e:
+            print(e)
             if 'unique constraint' in str(e):
                 error_message = "The email or username already exists."
             else:
